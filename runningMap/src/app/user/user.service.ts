@@ -7,11 +7,15 @@ import { User } from './user.model';
 })
 export class UserService {
 
-  private URL_API = 'mongodb+srv://carod:clemL34270+@cluster0-fbriu.gcp.mongodb.net/running_map?retryWrites=true&w=majority';
+  private URL_API = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 
+  getAllUser() {
+    return this.http.get<User[]>(this.URL_API + '/users');
+  }
+
   getUserById(id: string) {
-    return this.http.get<User>(this.URL_API + id);
+    return this.http.get<User>(this.URL_API + '/user/' + id);
   }
 }

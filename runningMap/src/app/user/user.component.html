@@ -1,1 +1,13 @@
-<p>user works!</p>
+<h1>Mon compte</h1>
+
+<div *ngFor="let user of allUsers">
+    <p>
+        {{user.firstname}}
+    </p>
+    <p>
+        {{user.age}}
+    </p>
+    <p>
+        {{user.gender}}
+    </p>
+</div>
