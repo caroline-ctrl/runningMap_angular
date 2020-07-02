@@ -5,12 +5,12 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RunningMapComponent } from './running-map/running-map.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RunningMapComponent
+    UserComponent,
   ],
   imports: [
     BrowserModule,
