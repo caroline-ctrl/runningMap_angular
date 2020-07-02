@@ -18,4 +18,20 @@ export class UserService {
   getUserById(id: string) {
     return this.http.get<User>(this.URL_API + '/user/' + id);
   }
+
+  createUser(data) {
+    return this.http.post<User>(this.URL_API + '/create/' , data);
+  }
+
+  updateUser(id, data) {
+    return this.http.put<User>(this.URL_API + '/update/' + id, data);
+  }
+
+  archiveUser(id, data) {
+    return this.http.put<User>(this.URL_API + '/archive/' + id, data);
+  }
+
+  activeUser(id, data) {
+    return this.http.put<User>(this.URL_API + '/activer/' + id, data);
+  }
 }
