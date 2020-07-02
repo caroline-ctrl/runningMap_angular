@@ -8,7 +8,6 @@ export class User {
         public gender: string,
         public age: number,
         public password: string,
-        public is_active: string,
-        public token: string
+        public is_active: boolean,
     ){}
 } 
