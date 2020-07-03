@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../user.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-create',
@@ -9,46 +10,61 @@ import { User } from '../user.model';
   styleUrls: [ './user-create.component.css' ]
 })
 export class UserCreateComponent implements OnInit {
-  user: User = {
-    firstname: '',
-    lastname: '',
-    pseudo: '',
-    mail: '',
-    city: '',
-    gender: '',
-    age: null,
-    password: '',
-    is_active: true,
-    confirmPassword: ''
-  };
+
+  user: FormGroup;
+  isSubmit = false;
+  confirmMp = null;
+  mp = null;
 
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute
+    private formBuilder: FormBuilder,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.user = this.formBuilder.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      pseudo: ['', Validators.required],
+      mail: ['', [Validators.required, Validators.email]],
+      city: ['', Validators.required],
+      gender: ['', [Validators.required, Validators.maxLength(1)]],
+      age: [null, Validators.required],
+      password: ['', Validators.required],
+      is_active: true,
+      confirmPassword: ['', Validators.required]
+    });
+  }
+
 
   createUser() {
-    const data = {
-      firstname: this.user.firstname,
-      lastname: this.user.lastname,
-      pseudo: this.user.pseudo,
-      mail: this.user.mail,
-      city: this.user.city,
-      gender: this.user.gender,
-      age: this.user.age,
-      password: this.user.password,
-      is_active: this.user.is_active
-    };
-
-    this.userService.createUser(data).subscribe(
-      (result) => {
-        console.log(result);
-      },
-      (err) => {
-        console.log(err);
-      }
+    const formValue = this.user.value;
+    const data = new User (
+      formValue.firstname,
+      formValue.lastname,
+      formValue.pseudo,
+      formValue.mail,
+      formValue.city,
+      formValue.gender,
+      formValue.age,
+      formValue.password,
+      formValue.is_active
     );
+
+    this.confirmMp = this.user.value.confirmPassword;
+    this.mp = this.user.value.password;
+
+    console.log(data);
+    console.log(this.confirmMp);
+    console.log(this.mp);
+      
+    // this.userService.createUser(data).subscribe(
+    //   (result) => {
+    //     console.log(result);
+    //   },
+    //   (err) => {
+    //     console.log(err);
+    //   }
+    // );
   }
 }

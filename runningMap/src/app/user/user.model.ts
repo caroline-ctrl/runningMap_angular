@@ -9,6 +9,6 @@ export class User {
         public age: number,
         public password: string,
         public is_active: boolean,
-        public confirmPassword: string
+        // public confirmPassword: string
     ){}
 } 

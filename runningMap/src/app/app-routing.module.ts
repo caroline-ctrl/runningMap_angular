@@ -8,6 +8,7 @@ import { UserArchiveComponent } from './user/user-archive/user-archive.component
 
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'users'},
   { path: 'archiv/:id', component: UserArchiveComponent},
   { path: 'update/:id', component: UserUpdateComponent},
   { path: 'user/:id', component: UserDetailComponent },
