@@ -34,12 +34,17 @@
       <label for="password">Mot de passe</label>
       <input type="text" class="form-control" id="password" required name="password" [(ngModel)]="user.password">
     </div>
-    <!-- <div class="form-group">
-      <label for="age">Confirmer mot de passe</label>
-      <input type="text" class="form-control" id="age" required name="age" [(ngModel)]="user.age">
-    </div> -->
+    <div class="form-group">
+      <label for="confirmPassword">Confirmer mot de passe</label>
+      <input type="text" class="form-control" id="confirmPassword" required name="confirmPassword" [(ngModel)]="user.confirmPassword">
+    </div>
 
-    <button (click)="createUser()" class="btn btn-success">S'inscrire</button>
+    <div *ngIf="user.password === user.confirmPassword">
+        <button (click)="createUser()" class="btn btn-success">S'inscrire</button>
+    </div>
+    <div *ngIf="user.password !== user.confirmPassword">
+        <p>Votre mot passe n'est pas bon</p>
+    </div>
 
   </div>
 </div>

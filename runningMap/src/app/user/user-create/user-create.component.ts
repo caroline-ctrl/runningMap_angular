@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../user.model';
@@ -6,11 +6,10 @@ import { User } from '../user.model';
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-create.component.html',
-  styleUrls: ['./user-create.component.css']
+  styleUrls: [ './user-create.component.css' ]
 })
 export class UserCreateComponent implements OnInit {
-
-   user: User = {
+  user: User = {
     firstname: '',
     lastname: '',
     pseudo: '',
@@ -19,14 +18,16 @@ export class UserCreateComponent implements OnInit {
     gender: '',
     age: null,
     password: '',
-    is_active: true
-  }
+    is_active: true,
+    confirmPassword: ''
+  };
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   createUser() {
     const data = {
@@ -41,11 +42,13 @@ export class UserCreateComponent implements OnInit {
       is_active: this.user.is_active
     };
 
-    this.userService.createUser(data).subscribe(result => {
-      console.log(result);
-    }, err => {
-      console.log(err);
-    });
+    this.userService.createUser(data).subscribe(
+      (result) => {
+        console.log(result);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
-
 }
