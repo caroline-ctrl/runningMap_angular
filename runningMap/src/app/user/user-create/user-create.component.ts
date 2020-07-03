@@ -28,7 +28,7 @@ export class UserCreateComponent implements OnInit {
       pseudo: ['', Validators.required],
       mail: ['', [Validators.required, Validators.email]],
       city: ['', Validators.required],
-      gender: ['', [Validators.required, Validators.maxLength(1)]],
+      gender: ['', Validators.required],
       age: [null, Validators.required],
       password: ['', Validators.required],
       is_active: true,
@@ -55,8 +55,6 @@ export class UserCreateComponent implements OnInit {
     this.mp = this.user.value.password;
 
     console.log(data);
-    console.log(this.confirmMp);
-    console.log(this.mp);
       
     // this.userService.createUser(data).subscribe(
     //   (result) => {
@@ -66,5 +64,10 @@ export class UserCreateComponent implements OnInit {
     //     console.log(err);
     //   }
     // );
+  }
+
+
+  age_user(n: number): any []{
+    return Array(n);
   }
 }
