@@ -54,18 +54,15 @@ export class UserCreateComponent implements OnInit {
     this.confirmMp = this.user.value.confirmPassword;
     this.mp = this.user.value.password;
 
-    console.log(data);
-      
-    // this.userService.createUser(data).subscribe(
-    //   (result) => {
-    //     console.log(result);
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //   }
-    // );
+    this.userService.createUser(data).subscribe(
+      (result) => {
+        console.log(result);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
-
 
   age_user(n: number): any []{
     return Array(n);
