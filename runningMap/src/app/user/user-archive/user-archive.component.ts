@@ -5,38 +5,62 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-user-archive',
   templateUrl: './user-archive.component.html',
-  styleUrls: ['./user-archive.component.css']
+  styleUrls: [ './user-archive.component.css' ]
 })
 export class UserArchiveComponent implements OnInit {
-
   curentUser = null;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.getUserByIde(this.route.snapshot.paramMap.get('id'));
   }
 
-  getUserByIde(id){
-    this.userService.getUserById(id).subscribe(user => {
-      this.curentUser = user;
-    }, err => {
-      console.log(err);
-    });
+  getUserByIde(id) {
+    this.userService.getUserById(id).subscribe(
+      (user) => {
+        this.curentUser = user;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
-  archivUser(){
+  archivUser() {
     const data = {
       is_active: false
     };
 
     const id = this.curentUser._id;
 
-    this.userService.archiveUser(id, data).subscribe(result => {
-      console.log('user archivé');
-    }, err => {
-      console.log(err);
-    });
+    this.userService.archiveUser(id, data).subscribe(
+      (result) => {
+        console.log('user archivé');
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
+  activeUser() {
+    const data = {
+      is_active: true
+    };
+
+    const id = this.curentUser._id;
+
+    this.userService.activeUser(id, data).subscribe(
+      (result) => {
+        console.log('user activé');
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 }
