@@ -1,5 +1,12 @@
 <h1>Archivage</h1>
 
-<p>Souhaitez vous archiver le user ?</p>
 
-<button (click)="archivUser()" class="btn btn-success">Archiver</button>
+<div *ngIf="curentUser.is_active === true">
+    <p>Souhaitez vous archiver le user ?</p>
+    <button (click)="archivUser()" class="btn btn-success">Archiver</button>
+</div>
+
+<div *ngIf="curentUser.is_active === false">
+    <p>Souhaitez vous activer le user ?</p>
+    <button (click)="activeUser()" class="btn btn-success">Activer</button>
+</div>
