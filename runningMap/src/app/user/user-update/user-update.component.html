@@ -1,1 +1,43 @@
-<p>user-update works!</p>
+<h1>Modification</h1>
+<div class="container">
+
+  <div class="submit-form">
+
+    <div class="form-group">
+      <label for="firstname">Prénom</label>
+      <input type="text" class="form-control" id="firstname" name="firstname"
+        [(ngModel)]="currentUser.firstname">
+    </div>
+    <div class="form-group">
+      <label for="lastname">Nom</label>
+      <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="currentUser.lastname">
+    </div>
+    <div class="form-group">
+      <label for="pseudo">pseudo</label>
+      <input type="text" class="form-control" id="pseudo" name="pseudo" [(ngModel)]="currentUser.pseudo">
+    </div>
+    <div class="form-group">
+      <label for="mail">mail</label>
+      <input type="email" class="form-control" id="mail" name="mail" [(ngModel)]="currentUser.mail">
+    </div>
+    <div class="form-group">
+      <label for="city">Ville</label>
+      <input type="text" class="form-control" id="city" name="city" [(ngModel)]="currentUser.city">
+    </div>
+    <div class="form-group">
+      <label for="gender">Genre</label>
+      <input type="text" class="form-control" id="gender" name="gender" [(ngModel)]="currentUser.gender">
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="text" class="form-control" id="age" name="age" [(ngModel)]="currentUser.age">
+    </div>
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="text" class="form-control" id="password" name="password" [(ngModel)]="currentUser.password">
+    </div>
+
+    <button (click)="updateUser()" class="btn btn-success">Modifier</button>
+
+  </div>
+</div>
