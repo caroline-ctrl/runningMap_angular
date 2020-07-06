@@ -7,14 +7,16 @@ import { UserUpdateComponent } from './user/user-update/user-update.component';
 import { UserArchiveComponent } from './user/user-archive/user-archive.component';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { AccueilComponent } from './user/accueil/accueil.component';
 
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'index'},
+  { path: '', pathMatch: 'full', redirectTo: 'index/accueil'},
   { path: 'archiv/:id', component: UserArchiveComponent},
   { path: 'update/:id', component: UserUpdateComponent},
   { path: 'user/:id', component: UserDetailComponent },
   { path: 'index', component: NavBarComponent, children: [
+    { path: 'accueil', component: AccueilComponent},
     { path: 'create', component: UserCreateComponent},
     { path: 'users', component: UserComponent}
   ]}

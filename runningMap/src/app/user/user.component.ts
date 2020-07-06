@@ -9,6 +9,7 @@ import { User } from './user.model';
 })
 export class UserComponent implements OnInit {
   allUsers: User [];
+  userConnected;
 
   constructor(
     private userService: UserService
@@ -20,4 +21,10 @@ export class UserComponent implements OnInit {
       console.log(this.allUsers);
     });
   }
+
+  // loggedUser(data) {
+  //   this.userService.login().subscribe(user => {
+  //     this.userConnected = user;
+  //   })
+  // }
 }
