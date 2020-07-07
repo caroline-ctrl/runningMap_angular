@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,7 +11,7 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class NavBarComponent implements OnInit {
 
-  lengthSession: boolean;
+  contentCookie;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -19,9 +20,10 @@ export class NavBarComponent implements OnInit {
     );
 
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private cookieService: CookieService) {}
 
   ngOnInit(): void {
-    this.lengthSession = localStorage.length > 0;
+    // this.lengthSession = localStorage.length > 0;
+    this.contentCookie = this.cookieService.get('pseudo');
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-user-connexion',
@@ -17,7 +18,8 @@ export class UserConnexionComponent implements OnInit {
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -41,9 +43,12 @@ export class UserConnexionComponent implements OnInit {
         this.connectedPseudo = this.userConnected.pseudo;
         this.connectedIsActive = this.userConnected.is_active;
 
+        // cookie
+        const test = this.cookieService.set('pseudo', this.connectedPseudo, 1, '', '', false, 'Lax');
+
         // pseudo et is_active mis en session
-        localStorage.setItem('pseudo', this.connectedPseudo);
-        localStorage.setItem('isActive', this.connectedIsActive);
+        // localStorage.setItem('pseudo', this.connectedPseudo);
+        // localStorage.setItem('isActive', this.connectedIsActive);
         alert('Vous êtes connecté');
 
         this.router.navigate(['index/accueil']);
