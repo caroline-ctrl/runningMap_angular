@@ -9,6 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class UserConnexionComponent implements OnInit {
   userConnected;
+  connectedPseudo;
+  connectedIsActive;
   user: FormGroup;
 
   constructor(
@@ -18,8 +20,8 @@ export class UserConnexionComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.formBuilder.group({
-      mail: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      mail: [ '', [ Validators.required, Validators.email ] ],
+      password: [ '', Validators.required ]
     });
   }
 
@@ -29,11 +31,16 @@ export class UserConnexionComponent implements OnInit {
       mail: formValue.mail,
       password: formValue.password
     };
-    
+
     this.userService.login(data).subscribe(
       (user) => {
         this.userConnected = user;
         console.log(this.userConnected);
+        this.connectedPseudo = this.userConnected.pseudo;
+        this.connectedIsActive = this.userConnected.is_active;
+      
+        localStorage.setItem('pseudo', this.connectedPseudo);
+        localStorage.setItem('isActive', this.connectedIsActive);
       },
       (err) => {
         console.log(err);
