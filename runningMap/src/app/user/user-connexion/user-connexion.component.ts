@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-connexion',
@@ -15,7 +16,8 @@ export class UserConnexionComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,16 +37,24 @@ export class UserConnexionComponent implements OnInit {
     this.userService.login(data).subscribe(
       (user) => {
         this.userConnected = user;
-        console.log(this.userConnected);
+        // récupère le pseudo et le is_active de l'objet user
         this.connectedPseudo = this.userConnected.pseudo;
         this.connectedIsActive = this.userConnected.is_active;
-      
+
+        // pseudo et is_active mis en session
         localStorage.setItem('pseudo', this.connectedPseudo);
         localStorage.setItem('isActive', this.connectedIsActive);
+        alert('Vous êtes connecté');
+
+        this.router.navigate(['index/accueil']);
       },
       (err) => {
         console.log(err);
       }
     );
   }
+
+  // redirect(){
+  //   this.router.navigate(['index/accueil']);
+  // }
 }
