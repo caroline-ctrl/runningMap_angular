@@ -12,7 +12,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class UserCreateComponent implements OnInit {
 
   user: FormGroup;
-  isSubmit = false;
   confirmMp = null;
   mp = null;
 

@@ -1,17 +1,18 @@
 <div class="container">
 
-  <div class="submit-form" [formGroup]="user">
-
-    <div class="form-group">
-      <label for="mail">mail</label>
-      <input type="email" class="form-control" id="mail" formControlName="mail" required name="mail">
+    <div class="submit-form" [formGroup]="user">
+  
+      <div class="form-group">
+        <label for="mail">mail</label>
+        <input type="email" class="form-control" id="mail" formControlName="mail" required name="mail">
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" class="form-control" id="password" formControlName="password" required name="password">
+      </div>
+  
+        <button (click)="loginUser()" [disabled]="user.invalid" class="btn btn-success">Se connecter</button>
+  
     </div>
-    <div class="form-group">
-      <label for="password">Mot de passe</label>
-      <input type="password" class="form-control" id="password" formControlName="password" required name="password">
-    </div>
-
-    <button (click)="createUser()" [disabled]="user.invalid" class="btn btn-success">S'inscrire</button>
-
   </div>
-</div>
+  

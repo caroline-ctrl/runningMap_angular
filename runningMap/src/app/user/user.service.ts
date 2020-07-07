@@ -35,7 +35,7 @@ export class UserService {
     return this.http.put<User>(this.URL_API + '/activer/' + id, data);
   }
 
-  login() {
-    return this.http.get<User>(this.URL_API + '/log/');
+  login(data) {
+    return this.http.post<User>(this.URL_API + '/log/', data);
   }
 }
