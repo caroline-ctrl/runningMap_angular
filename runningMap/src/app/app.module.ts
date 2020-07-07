@@ -19,6 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AccueilComponent } from './user/accueil/accueil.component';
+import { UserConnexionComponent } from './user/user-connexion/user-connexion.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AccueilComponent } from './user/accueil/accueil.component';
     UserArchiveComponent,
     NavBarComponent,
     AccueilComponent,
+    UserConnexionComponent,
   ],
   imports: [
     BrowserModule,
