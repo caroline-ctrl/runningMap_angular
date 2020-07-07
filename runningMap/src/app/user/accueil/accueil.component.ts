@@ -8,13 +8,16 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AccueilComponent implements OnInit {
 
-
+  contentCookie;
 
   constructor(private cookieService: CookieService) {}
 
   ngOnInit(): void {
-    console.log(this.cookieService.get('pseudo'));
+    this.emptyCookie();
+   }
+
+
+  emptyCookie(){
+    this.contentCookie = this.cookieService.get('pseudo');
   }
-
-
 }

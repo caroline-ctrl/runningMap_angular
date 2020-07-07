@@ -9,9 +9,13 @@
           <img src="https://via.placeholder.com/500" class=" img-responsive center-block" alt="">
       </div>
   
-    <div class="example-button-row text-center my-5">
+    <div class="example-button-row text-center my-5" *ngIf="contentCookie">
+      <p>Bon sport !</p>
+    </div>
+    <div class="example-button-row text-center my-5" *ngIf="!contentCookie">
       <button mat-flat-button color="accent" class="mx-3"><a href="index/create" class="nav-link">Inscription</a></button>
       <button mat-flat-button color="warn"><a href="index/login"  class="nav-link">Connexion</a></button>
     </div>
+
   </div>
   

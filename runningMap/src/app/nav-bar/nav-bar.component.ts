@@ -27,6 +27,7 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.modifNav();
+
     this.router.routeReuseStrategy.shouldReuseRoute = (() => {
       return false;
     })
@@ -49,7 +50,7 @@ export class NavBarComponent implements OnInit {
     this.cookieService.deleteAll('http://localhost:3000', '', false, 'Lax');
     alert('Vous êtes deconnecté');
 
-    this.router.navigate(['index/accueil']);
+    this.router.navigate(['']);
 
   }
 }
