@@ -38,4 +38,9 @@ export class UserService {
   login(data) {
     return this.http.post<User>(this.URL_API + '/log/', data);
   }
+  
+  getUserByPseudo(data) {
+    return this.http.post<User>(this.URL_API + '/monCompte/', {"pseudo": data});
+  }
+
 }

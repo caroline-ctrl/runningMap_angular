@@ -20,7 +20,8 @@ const routes: Routes = [
     { path: 'accueil', component: AccueilComponent},
     { path: 'create', component: UserCreateComponent},
     { path: 'users', component: UserComponent},
-    { path: 'login', component: UserConnexionComponent}
+    { path: 'login', component: UserConnexionComponent},
+    { path: 'monCompte', component: UserDetailComponent},
   ]}
 ];
 

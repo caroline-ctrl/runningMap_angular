@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-user-detail',
@@ -9,15 +9,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserDetailComponent implements OnInit {
   currentUser = null;
+  data = null;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    this.getById(this.route.snapshot.paramMap.get('id'));
+    this.data = this.cookieService.get('pseudo');
+    this.getBypseudo();
   }
 
-  getById(id) {
-    this.userService.getUserById(id).subscribe(user => {
+  getBypseudo() {
+    console.log(this.data);
+    this.userService.getUserByPseudo(this.data).subscribe(user => {
       this.currentUser = user;
     }, err => {
       console.log(err);

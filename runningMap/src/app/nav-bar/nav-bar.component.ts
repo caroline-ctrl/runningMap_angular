@@ -51,6 +51,5 @@ export class NavBarComponent implements OnInit {
     alert('Vous êtes deconnecté');
 
     this.router.navigate(['']);
-
   }
 }
