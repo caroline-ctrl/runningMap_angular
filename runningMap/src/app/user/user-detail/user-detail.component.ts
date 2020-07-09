@@ -56,7 +56,7 @@ export class UserDetailComponent implements OnInit {
 
     this.userService.updatePassword(data).subscribe(
       (result) => {
-        console.log('mot de passe modifié');
+        alert('Mot de passe modifié');
       },
       (err) => {
         console.log(err);
