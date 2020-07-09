@@ -21,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AccueilComponent } from './user/accueil/accueil.component';
 import { UserConnexionComponent } from './user/user-connexion/user-connexion.component';
+import { UserMpForgetComponent } from './user/user-mp-forget/user-mp-forget.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { UserConnexionComponent } from './user/user-connexion/user-connexion.com
     NavBarComponent,
     AccueilComponent,
     UserConnexionComponent,
+    UserMpForgetComponent,
   ],
   imports: [
     BrowserModule,
