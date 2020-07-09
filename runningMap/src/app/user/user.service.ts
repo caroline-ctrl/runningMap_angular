@@ -27,6 +27,10 @@ export class UserService {
     return this.http.put<User>(this.URL_API + '/update/' + id, data);
   }
 
+  updatePassword(data) {
+    return this.http.put<User>(this.URL_API + '/newPassword/', data);
+  }
+
   archiveUser(id, data) {
     return this.http.put<User>(this.URL_API + '/archive/' + id, data);
   }
@@ -42,5 +46,4 @@ export class UserService {
   getUserByPseudo(data) {
     return this.http.post<User>(this.URL_API + '/monCompte/', {"pseudo": data});
   }
-
 }

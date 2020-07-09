@@ -14,9 +14,9 @@ import { UserConnexionComponent } from './user/user-connexion/user-connexion.com
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'index/accueil'},
   { path: 'archiv/:id', component: UserArchiveComponent},
-  { path: 'update/:id', component: UserUpdateComponent},
   { path: 'user/:id', component: UserDetailComponent },
   { path: 'index', component: NavBarComponent, children: [
+    { path: 'update/:id', component: UserUpdateComponent},
     { path: 'accueil', component: AccueilComponent},
     { path: 'create', component: UserCreateComponent},
     { path: 'users', component: UserComponent},

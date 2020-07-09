@@ -54,4 +54,10 @@ export class UserUpdateComponent implements OnInit {
       }
     );
   }
+
+
+  age_user(n: number): any []{
+    return Array(n);
+  }
+
 }
