@@ -13,7 +13,6 @@ import { UserConnexionComponent } from './user/user-connexion/user-connexion.com
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'index/accueil'},
-  { path: 'archiv/:id', component: UserArchiveComponent},
   { path: 'user/:id', component: UserDetailComponent },
   { path: 'index', component: NavBarComponent, children: [
     { path: 'update/:id', component: UserUpdateComponent},
@@ -22,6 +21,7 @@ const routes: Routes = [
     { path: 'users', component: UserComponent},
     { path: 'login', component: UserConnexionComponent},
     { path: 'monCompte', component: UserDetailComponent},
+    // { path: 'archive', component: UserArchiveComponent},
   ]}
 ];
 

@@ -30,22 +30,22 @@ export class UserArchiveComponent implements OnInit {
     );
   }
 
-  archivUser() {
-    const data = {
-      is_active: false
-    };
+  // archivUser() {
+  //   const data = {
+  //     is_active: false
+  //   };
 
-    const id = this.curentUser._id;
+  //   const id = this.curentUser._id;
 
-    this.userService.archiveUser(id, data).subscribe(
-      (result) => {
-        console.log('user archivé');
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
+  //   this.userService.archiveUser(data).subscribe(
+  //     (result) => {
+  //       console.log('user archivé');
+  //     },
+  //     (err) => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 
   activeUser() {
     const data = {

@@ -31,8 +31,8 @@ export class UserService {
     return this.http.put<User>(this.URL_API + '/newPassword/', data);
   }
 
-  archiveUser(id, data) {
-    return this.http.put<User>(this.URL_API + '/archive/' + id, data);
+  archiveUser(data) {
+    return this.http.put<User>(this.URL_API + '/archive/', data);
   }
 
   activeUser(id, data) {

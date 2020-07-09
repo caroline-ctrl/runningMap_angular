@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { CookieService } from 'ngx-cookie-service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-detail',
@@ -10,7 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class UserDetailComponent implements OnInit {
   currentUser = null;
-  data = null;
+  pseudo = null;
   mp: FormGroup;
   confirmMp;
   password;
@@ -20,10 +21,11 @@ export class UserDetailComponent implements OnInit {
     private userService: UserService,
     private cookieService: CookieService,
     private formBuilder: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.data = this.cookieService.get('pseudo');
+    this.pseudo = this.cookieService.get('pseudo');
     this.getBypseudo();
 
     this.mp = this.formBuilder.group({
@@ -35,7 +37,7 @@ export class UserDetailComponent implements OnInit {
 
   // recupère le pseudo du cookie qu'il envoie a l'api et recupère l'objet user
   getBypseudo() {
-    this.userService.getUserByPseudo(this.data).subscribe(
+    this.userService.getUserByPseudo(this.pseudo).subscribe(
       (user) => {
         this.currentUser = user;
       },
@@ -62,5 +64,20 @@ export class UserDetailComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+
+  // supprimer compte
+  archivUser() {
+    const data = {
+      pseudo: this.currentUser.pseudo,
+    };
+
+    this.userService.archiveUser(data).subscribe(() => {
+        if (confirm("Voulez vous supprimer votre compte ?")){
+          this.cookieService.deleteAll('http://localhost:3000', '', false, 'Lax');
+          this.router.navigate(['index/accueil']);
+        }
+      });
   }
 }
