@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AccueilComponent } from './user/accueil/accueil.component';
 import { UserConnexionComponent } from './user/user-connexion/user-connexion.component';
+import { UserMpForgetComponent } from './user/user-mp-forget/user-mp-forget.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,7 @@ const routes: Routes = [
     { path: 'users', component: UserComponent},
     { path: 'login', component: UserConnexionComponent},
     { path: 'monCompte', component: UserDetailComponent},
-    // { path: 'archive', component: UserArchiveComponent},
+    { path: 'mpForget', component: UserMpForgetComponent}
   ]}
 ];
 
