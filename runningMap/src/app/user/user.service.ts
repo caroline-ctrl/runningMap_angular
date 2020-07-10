@@ -50,4 +50,8 @@ export class UserService {
   mail(data) {
     return this.http.post<User>(this.URL_API + '/mail/', {"mail": data});
   }
+
+  verifyCode(data) {
+    return this.http.post<User>(this.URL_API + '/verifyCode/', {"mail": data});
+  }
 }
