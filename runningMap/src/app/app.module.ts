@@ -22,6 +22,7 @@ import { MatListModule } from '@angular/material/list';
 import { AccueilComponent } from './user/accueil/accueil.component';
 import { UserConnexionComponent } from './user/user-connexion/user-connexion.component';
 import { UserMpForgetComponent } from './user/user-mp-forget/user-mp-forget.component';
+import { UserPasswordComponent } from './user/user-password/user-password.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { UserMpForgetComponent } from './user/user-mp-forget/user-mp-forget.comp
     AccueilComponent,
     UserConnexionComponent,
     UserMpForgetComponent,
+    UserPasswordComponent,
   ],
   imports: [
     BrowserModule,
