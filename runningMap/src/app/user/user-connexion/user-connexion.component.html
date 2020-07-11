@@ -1,9 +1,10 @@
 <div class="container">
 
-  <h1 class="mt-5">Connexion</h1>
+  <h1 class="mt-5">CONNEXION</h1>
 
+  <div class="shadow-lg p-3 mb-5 rounded">
     <div class="submit-form" [formGroup]="user">
-  
+
       <div class="form-group">
         <label for="mail" class="mt-3">Mail</label>
         <input type="email" class="form-control" id="mail" formControlName="mail" required name="mail">
@@ -12,10 +13,10 @@
         <label for="password">Mot de passe</label>
         <input type="password" class="form-control" id="password" formControlName="password" required name="password">
       </div>
-  
-        <button (click)="loginUser()" [disabled]="user.invalid" class="btn btn-success mr-3">Se connecter</button>
-        <small><a routerLink="/index/mpForget">Mot de passe oublié</a></small>
-  
+
+      <button (click)="loginUser()" [disabled]="user.invalid" class="btn btn-success mr-3 mb-2">Se connecter</button>
+      <small><a routerLink="/index/mpForget">Mot de passe oublié</a></small>
+
     </div>
   </div>
-  
+</div>

@@ -15,3 +15,12 @@
   top: 0;
   z-index: 1;
 }
+
+.linkAccueil {
+  text-decoration: none;
+  color: white;
+}
+
+.logo {
+  width: 110px;
+}

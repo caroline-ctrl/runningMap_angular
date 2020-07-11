@@ -1,56 +1,58 @@
 <div class="container">
 
-  <h1 class="mt-5 mb-3">Mon compte</h1>
+  <h1 class="mt-5 mb-3">MON COMPTE</h1>
 
-  <h2>Mes données</h2>
-
-  <p><strong>Prénom : </strong>{{ currentUser.firstname }}</p>
-  <p><strong>Nom : </strong>{{ currentUser.lastname }}</p>
-  <p><strong>Pseudo : </strong>{{ currentUser.pseudo }}</p>
-  <p><strong>Mail : </strong>{{ currentUser.mail }}</p>
-  <p><strong>City : </strong>{{ currentUser.city }}</p>
-  <p><strong>Genre : </strong>{{ currentUser.gender }}</p>
-  <p><strong>Age : </strong>{{ currentUser.age }}</p>
-
-  <button class="btn btn-success mt-3 mb-5"><a href="index/update/{{ currentUser._id }}">Modifier</a></button>
-
-
-  <hr>
-
-  <h2>Mot de passe</h2>
-  <p>Modifier mon mot de passe.</p>
-
-  <div class="submit-form" [formGroup]="mp">
-
-    <div class="form-group">
-      <label for="oldpPasswd" class="mt-3">Ancien mot de passe</label>
-      <input type="text" class="form-control" id="oldpPasswd" formControlName="oldpPasswd" required name="oldpPasswd">
-    </div>
-
-    <div class="form-group">
-      <label for="newPasswd" class="mt-3">Nouveau mot de passe</label>
-      <input type="text" class="form-control" id="newPasswd" formControlName="newPasswd" required name="newPasswd">
-    </div>
-
-    <div class="form-group">
-      <label for="confirmNewPasswd" class="mt-3">Confirmation nouveau mot de passe</label>
-      <input type="text" class="form-control" id="confirmNewPasswd" formControlName="confirmNewPasswd" required
-        name="confirmNewPasswd">
-    </div>
-
-    <div *ngIf="mp.value.newPasswd === mp.value.confirmNewPasswd">
-      <button (click)="editMp()" [disabled]="mp.invalid" class="btn btn-success mt-3 mb-5">Modifier</button>
-    </div>
-    <div *ngIf="mp.value.newPasswd !== mp.value.confirmNewPasswd">
-      <button (click)="editMp()" disabled class="btn btn-success">Modifier</button>
-      <p>Vos mots de passe ne sont pas identiques</p>
-    </div>
-
+  <div class="shadow-lg p-3 mb-5 rounded">
+    <p class="mt-2 ml-3"><strong>Prénom : </strong>{{ currentUser.firstname }}</p>
+    <p class="ml-3"><strong>Nom : </strong>{{ currentUser.lastname }}</p>
+    <p class="ml-3"><strong>Pseudo : </strong>{{ currentUser.pseudo }}</p>
+    <p class="ml-3"><strong>Mail : </strong>{{ currentUser.mail }}</p>
+    <p class="ml-3"><strong>City : </strong>{{ currentUser.city }}</p>
+    <p class="ml-3"><strong>Genre : </strong>{{ currentUser.gender }}</p>
+    <p class="ml-3"><strong>Age : </strong>{{ currentUser.age }}</p>
+    <button class="btn btn-success mt-3 mb-2 ml-3"><a class="linkButton"
+        href="index/update/{{ currentUser._id }}">Modifier</a></button>
   </div>
 
   <hr>
 
-  <h2>Supprimer mon compte</h2>
-  <button mat-flat-button color="warn" (click)="deleteUser()" class="mb-5">Supprimer</button>
+  <h2>MODIFIER MOT DE PASSE</h2>
+
+  <div class="shadow-lg p-3 mb-5 rounded">
+    <div class="submit-form" [formGroup]="mp">
+
+      <div class="form-group">
+        <input type="text" class="form-control" id="oldpPasswd" formControlName="oldpPasswd" required name="oldpPasswd"
+          placeholder="Ancien mot de passe">
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" id="newPasswd" formControlName="newPasswd" required name="newPasswd"
+          placeholder="Nouveau mot de passe">
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" id="confirmNewPasswd" formControlName="confirmNewPasswd" required
+          name="confirmNewPasswd" placeholder="Confirmation nouveau mot de passe">
+      </div>
+
+      <div *ngIf="mp.value.newPasswd === mp.value.confirmNewPasswd">
+        <button (click)="editMp()" [disabled]="mp.invalid" class="btn btn-success mt-3 mb-2">Modifier</button>
+      </div>
+      <div *ngIf="mp.value.newPasswd !== mp.value.confirmNewPasswd">
+        <button (click)="editMp()" disabled class="btn btn-success mt-3 mb-2">Modifier</button>
+        <p>Vos mots de passe ne sont pas identiques</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>SUPPRIMER COMPTE</h2>
+
+  <div class="shadow-lg p-3 mb-5 rounded">
+    <p>Votre compte sera supprimé définitivement</p>
+    <button mat-flat-button color="warn" (click)="deleteUser()" class="mb-2">Supprimer</button>
+  </div>
 
 </div>

@@ -2,7 +2,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false"
     *ngIf="contentCookie">
-    <mat-toolbar><a mat-list-item href="/index/accueil">Menu</a></mat-toolbar>
+    <mat-toolbar><a mat-list-item href="/index/accueil"></a></mat-toolbar>
     <mat-nav-list>
       <a mat-list-item href="/index/create">Générer un parcours</a>
       <a mat-list-item href="/index/monCompte">Mon compte</a>
@@ -16,7 +16,8 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>runningMap</span>
+      <img src="assets/images/logo.png" alt="logo" class="logo">
+      <span><a mat-list-item href="/index/accueil" class="linkAccueil">runningMap</a></span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

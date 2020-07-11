@@ -1,59 +1,61 @@
 <div class="container">
 
-  <h1 class="mt-5">Inscription</h1>
+  <h1 class="mt-5">INSCRIPTION</h1>
 
-  <div class="submit-form" [formGroup]="user">
+  <div class="shadow-lg p-3 mb-5 rounded">
+    <div class="submit-form" [formGroup]="user">
 
-    <div class="form-group">
-      <label for="firstname" class="mt-3">Prénom</label>
-      <input type="text" class="form-control" id="firstname" formControlName="firstname" required name="firstname">
-    </div>
-    <div class="form-group">
-      <label for="lastname">Nom</label>
-      <input type="text" class="form-control" id="lastname" formControlName="lastname" required name="lastname">
-    </div>
-    <div class="form-group">
-      <label for="pseudo">Pseudo</label>
-      <input type="text" class="form-control" id="pseudo" formControlName="pseudo" required name="pseudo">
-    </div>
-    <div class="form-group">
-      <label for="mail">Mail</label>
-      <input type="email" class="form-control" id="mail" formControlName="mail" required name="mail">
-    </div>
-    <div class="form-group">
-      <label for="city">Ville</label>
-      <input type="text" class="form-control" id="city" formControlName="city" required name="city">
-    </div>
-    <div class="form-group">
-      <label for="gender">Genre</label>
-      <select name="gender" id="gender" formControlName="gender" class="ml-2">
-        <option value="Femme">Femme</option>
-        <option value="Homme">Homme</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="age">Age</label>
-      <select name="age" id="age" formControlName="age" class="ml-2">
-        <option *ngFor="let item of age_user(100); let i = index;" value="{{i}}">{{i}}</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="password">Mot de passe</label>
-      <input type="password" class="form-control" id="password" formControlName="password" required name="password">
-    </div>
-    <div class="form-group">
-      <label for="confirmPassword">Confirmer mot de passe</label>
-      <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" required
-        name="confirmPassword">
-    </div>
+      <div class="form-group">
+        <label for="firstname" class="mt-3">Prénom</label>
+        <input type="text" class="form-control" id="firstname" formControlName="firstname" required name="firstname">
+      </div>
+      <div class="form-group">
+        <label for="lastname">Nom</label>
+        <input type="text" class="form-control" id="lastname" formControlName="lastname" required name="lastname">
+      </div>
+      <div class="form-group">
+        <label for="pseudo">Pseudo</label>
+        <input type="text" class="form-control" id="pseudo" formControlName="pseudo" required name="pseudo">
+      </div>
+      <div class="form-group">
+        <label for="mail">Mail</label>
+        <input type="email" class="form-control" id="mail" formControlName="mail" required name="mail">
+      </div>
+      <div class="form-group">
+        <label for="city">Ville</label>
+        <input type="text" class="form-control" id="city" formControlName="city" required name="city">
+      </div>
+      <div class="form-group">
+        <label for="gender">Genre</label>
+        <select name="gender" id="gender" formControlName="gender" class="ml-2">
+          <option value="Femme">Femme</option>
+          <option value="Homme">Homme</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <select name="age" id="age" formControlName="age" class="ml-2">
+          <option *ngFor="let item of age_user(100); let i = index;" value="{{i}}">{{i}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" class="form-control" id="password" formControlName="password" required name="password">
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirmer mot de passe</label>
+        <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" required
+          name="confirmPassword">
+      </div>
 
-    <div *ngIf="user.value.password === user.value.confirmPassword">
-      <button (click)="createUser()" [disabled]="user.invalid" class="btn btn-success mt-3 mb-5">S'inscrire</button>
-    </div>
-    <div *ngIf="user.value.password !== user.value.confirmPassword">
-      <button (click)="createUser()" disabled class="btn btn-success">S'inscrire</button>
-      <p>Votre mot passe n'est pas bon</p>
-    </div>
+      <div *ngIf="user.value.password === user.value.confirmPassword">
+        <button (click)="createUser()" [disabled]="user.invalid" class="btn btn-success mt-3 mb-2">S'inscrire</button>
+      </div>
+      <div *ngIf="user.value.password !== user.value.confirmPassword">
+        <button (click)="createUser()" disabled class="btn btn-success mt-3 mb-2">S'inscrire</button>
+        <p>Votre mot passe n'est pas bon</p>
+      </div>
 
+    </div>
   </div>
 </div>
