@@ -1,21 +1,23 @@
 <div class="container">
-    <h1 class="mt-5 text-center">Running Map</h1>
-  
-    <p class="text-justify my-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, sunt! Quod, voluptatibus incidunt. Voluptate
-      mollitia illo repellat alias? Eligendi voluptatum, beatae officia suscipit non obcaecati debitis vitae maiores odio
-      aspernatur!</p>
-  
-      <div class="text-center">
-          <img src="https://via.placeholder.com/500" class=" img-responsive center-block" alt="">
-      </div>
-  
-    <div class="example-button-row text-center my-5" *ngIf="contentCookie">
-      <p>Bon sport !</p>
-    </div>
-    <div class="example-button-row text-center my-5" *ngIf="!contentCookie">
-      <button mat-flat-button color="accent" class="mx-3"><a href="index/create" class="nav-link">Inscription</a></button>
-      <button mat-flat-button color="warn"><a href="index/login"  class="nav-link">Connexion</a></button>
-    </div>
+  <h1 class="mt-5 text-center">Running Map</h1>
 
+  <p class="text-justify my-5">Bienvenue sur l'application Running Map !</p>
+  <p class="text-justify">Vous êtes sportif débutant ou avéré et vous ne connaissez pas ou peu de parcours autour de
+    chez ? Vous partez en vacances et vous souhaitez continuer a faire du sport mais vous ne connaissez pas de parcours
+    ? Cette application est faite pour pour vous !</p>
+  <p class="text-justify">Running Map vous permet de générer un itinéraire en partant d'un point de depart (votre
+    domicile par exemple) et en fonction des kilometres et du type de chemin (route, chemin de terre).</p>
+
+  <div class="text-center">
+    <img src="/assets/images/runner.jpg" class="Responsive image rounded w-50" alt="coureur a pied dans la nuit">
   </div>
-  
+
+  <div class="example-button-row text-center my-5" *ngIf="contentCookie">
+    <p>Bon sport !</p>
+  </div>
+  <div class="example-button-row text-center my-5" *ngIf="!contentCookie">
+    <button mat-flat-button color="accent" class="mx-3"><a href="index/create" class="nav-link">Inscription</a></button>
+    <button mat-flat-button color="warn"><a href="index/login" class="nav-link">Connexion</a></button>
+  </div>
+
+</div>
