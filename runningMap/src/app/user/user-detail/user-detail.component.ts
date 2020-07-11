@@ -68,16 +68,17 @@ export class UserDetailComponent implements OnInit {
 
 
   // supprimer compte
-  archivUser() {
-    const data = {
-      pseudo: this.currentUser.pseudo,
-    };
-
-    this.userService.archiveUser(data).subscribe(() => {
+  deleteUser() {
+    this.userService.delete(this.currentUser._id).subscribe(
+      (user) => {
         if (confirm("Voulez vous supprimer votre compte ?")){
           this.cookieService.deleteAll('http://localhost:3000', '', false, 'Lax');
           this.router.navigate(['index/accueil']);
         }
-      });
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

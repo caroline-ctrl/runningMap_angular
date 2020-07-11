@@ -44,8 +44,7 @@ export class UserConnexionComponent implements OnInit {
         this.connectedIsActive = this.userConnected.is_active;
 
         // cookie
-        this.cookieService.set('pseudo', this.connectedPseudo, 1, 'http://localhost:3000', '', false, 'Lax');
-        this.cookieService.set('isActive', this.connectedIsActive, 1, 'http://localhost:3000', '', false, 'Lax');
+        this.cookieService.set('pseudo', this.connectedPseudo, 7, 'http://localhost:3000', '', false, 'Lax');
 
         alert('Vous êtes connecté');
 

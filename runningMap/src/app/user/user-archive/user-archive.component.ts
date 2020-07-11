@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-user-archive',
@@ -9,58 +10,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserArchiveComponent implements OnInit {
   curentUser = null;
+  cookiePseudo;
 
   constructor(
     private userService: UserService,
+    private cookieService: CookieService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.getUserByIde(this.route.snapshot.paramMap.get('id'));
   }
 
-  getUserByIde(id) {
-    this.userService.getUserById(id).subscribe(
-      (user) => {
-        this.curentUser = user;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
-
-  // archivUser() {
-  //   const data = {
-  //     is_active: false
-  //   };
-
-  //   const id = this.curentUser._id;
-
-  //   this.userService.archiveUser(data).subscribe(
-  //     (result) => {
-  //       console.log('user archivé');
-  //     },
-  //     (err) => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
-
-  activeUser() {
-    const data = {
-      is_active: true
-    };
-
-    const id = this.curentUser._id;
-
-    this.userService.activeUser(id, data).subscribe(
-      (result) => {
-        console.log('user activé');
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
 }

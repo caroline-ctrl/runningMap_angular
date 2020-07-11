@@ -3,6 +3,7 @@ import { UserService } from '../user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../user.model';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-user-mp-forget',
@@ -18,7 +19,8 @@ export class UserMpForgetComponent implements OnInit {
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -41,10 +43,9 @@ export class UserMpForgetComponent implements OnInit {
   verifyCode(code) {
     this.userService.verifyCode(this.mail).subscribe((user) => {
       this.currentUser = user;
-      console.log(typeof code);
-      console.log(typeof this.currentUser.token)
       if (code === this.currentUser.token){
-        console.log('token ok');
+        this.router.navigate(['index/password']);
+        this.cookieService.set('token', code, 7, 'http://localhost:3000', '', false, 'Lax');
       } else {
         alert('Le code n\est pas bon');
       }

@@ -10,19 +10,21 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AccueilComponent } from './user/accueil/accueil.component';
 import { UserConnexionComponent } from './user/user-connexion/user-connexion.component';
 import { UserMpForgetComponent } from './user/user-mp-forget/user-mp-forget.component';
+import { UserPasswordComponent } from './user/user-password/user-password.component';
 
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'index/accueil'},
   { path: 'user/:id', component: UserDetailComponent },
   { path: 'index', component: NavBarComponent, children: [
-    { path: 'update/:id', component: UserUpdateComponent},
-    { path: 'accueil', component: AccueilComponent},
-    { path: 'create', component: UserCreateComponent},
-    { path: 'users', component: UserComponent},
-    { path: 'login', component: UserConnexionComponent},
-    { path: 'monCompte', component: UserDetailComponent},
-    { path: 'mpForget', component: UserMpForgetComponent}
+    { path: 'update/:id', component: UserUpdateComponent },
+    { path: 'accueil', component: AccueilComponent },
+    { path: 'create', component: UserCreateComponent },
+    { path: 'users', component: UserComponent },
+    { path: 'login', component: UserConnexionComponent },
+    { path: 'monCompte', component: UserDetailComponent },
+    { path: 'mpForget', component: UserMpForgetComponent },
+    { path: 'password', component: UserPasswordComponent }
   ]}
 ];
 

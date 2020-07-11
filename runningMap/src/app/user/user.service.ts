@@ -31,12 +31,8 @@ export class UserService {
     return this.http.put<User>(this.URL_API + '/newPassword/', data);
   }
 
-  archiveUser(data) {
-    return this.http.put<User>(this.URL_API + '/archive/', data);
-  }
-
-  activeUser(id, data) {
-    return this.http.put<User>(this.URL_API + '/activer/' + id, data);
+  delete(id) {
+    return this.http.delete<User>(this.URL_API + '/delete/' + id);
   }
 
   login(data) {
@@ -53,5 +49,9 @@ export class UserService {
 
   verifyCode(data) {
     return this.http.post<User>(this.URL_API + '/verifyCode/', {"mail": data});
+  }
+
+  changePassword(data) {
+    return this.http.put<User>(this.URL_API + '/forgetPassword/', data);
   }
 }
