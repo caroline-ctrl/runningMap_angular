@@ -46,7 +46,7 @@ export class UserCreateComponent implements OnInit {
 
   createUser() {
     const avatarUser = "assets/images/avatar.png";
-
+    
     const formValue = this.user.value;
     const data = new User (
       avatarUser,
@@ -78,11 +78,9 @@ export class UserCreateComponent implements OnInit {
         this.userConnected = user;
         // récupère le pseudo et le is_active de l'objet user
         this.connectedPseudo = this.userConnected.pseudo;
-        this.connectedIsActive = this.userConnected.is_active;
 
         // cookie
         this.cookieService.set('pseudo', this.connectedPseudo, 1, 'http://localhost:3000', '', false, 'Lax');
-        this.cookieService.set('isActive', this.connectedIsActive, 1, 'http://localhost:3000', '', false, 'Lax');
 
         alert('Vous êtes inscrit');
 

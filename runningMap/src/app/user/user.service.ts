@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './user.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,10 @@ export class UserService {
   }
 
   updateUser(id, data) {
+    return this.http.put<User>(this.URL_API + '/update/' + id, data);
+  }
+
+  uploadAvatar(id, data) {
     return this.http.put<User>(this.URL_API + '/update/' + id, data);
   }
 

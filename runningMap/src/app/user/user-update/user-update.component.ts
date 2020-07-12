@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { UserService } from '../user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ngfModule, ngf } from "angular-file"
 
 @Component({
   selector: 'app-user-update',
@@ -33,13 +34,43 @@ export class UserUpdateComponent implements OnInit {
     );
   }
 
-  handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
-  }
 
   updateUser() {
     const data = {
-      avatar: this.fileToUpload.name,
+      avatar: this.currentUser.avatar,
+      firstname: this.currentUser.firstname,
+      lastname: this.currentUser.lastname,
+      pseudo: this.currentUser.pseudo,
+      mail: this.currentUser.mail,
+      city: this.currentUser.city,
+      gender: this.currentUser.gender,
+      age: this.currentUser.age,
+    };
+
+    console.log(data);
+
+    const id = this.currentUser._id;
+
+    this.userService.updateUser(id, data).subscribe(
+      (result) => {
+        console.log('user modifié');
+        // this.router.navigate(["index/accueil"]);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+
+  sendFile(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
+
+
+  updateAvatar(){
+    const data = {
+      avatar: "assets/images/" + this.fileToUpload.name,
       firstname: this.currentUser.firstname,
       lastname: this.currentUser.lastname,
       pseudo: this.currentUser.pseudo,
@@ -60,8 +91,8 @@ export class UserUpdateComponent implements OnInit {
         console.log(err);
       }
     );
-  }
 
+  }
 
   age_user(n: number): any []{
     return Array(n);

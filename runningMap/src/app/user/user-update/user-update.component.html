@@ -38,15 +38,21 @@
           <option *ngFor="let item of age_user(100); let i = index;" value="{{i}}">{{i}}</option>
         </select>
       </div>
-      <div class="form-group">
-        <label for="avatar">Avatar</label>
-        <input type="file" class="form-control" id="file" name="file" (change)="handleFileInput($event.target.files)">
-      </div>
-
-      <img [src]="imageSrc" alt="">
 
       <button (click)="updateUser()" class="btn btn-success">Modifier</button>
 
     </div>
   </div>
+
+<div class="shadow-lg p-3 mb-5 rounded">
+  <div class="form-group">
+    <label for="avatar">Avatar</label>
+    <input ngf type="file" accept="image/*" id="file" name="file" (change)="sendFile($event.target.files)">
+  </div>
+
+  <img [src]="imageSrc" alt="">
+
+  <button (click)="updateAvatar()" class="btn btn-success">Modifier</button>
+
+</div>
 </div>
