@@ -1,5 +1,6 @@
 export class User {
     constructor(
+        public avatar: string,
         public firstname: string,
         public lastname: string,
         public pseudo: string,
@@ -8,7 +9,5 @@ export class User {
         public gender: string,
         public age: number,
         public password: string,
-        public is_active: boolean,
-        // public confirmPassword: string
     ){}
-} 
+}; 

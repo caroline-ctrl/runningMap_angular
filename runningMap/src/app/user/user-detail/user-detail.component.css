@@ -2,3 +2,8 @@
     text-decoration: none;
     color: white;
 }
+
+.avatarUser {
+    width: 100px;
+    border-radius: 50px;
+}

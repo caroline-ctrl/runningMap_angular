@@ -3,13 +3,20 @@
   <h1 class="mt-5 mb-3">MON COMPTE</h1>
 
   <div class="shadow-lg p-3 mb-5 rounded">
-    <p class="mt-2 ml-3"><strong>Prénom : </strong>{{ currentUser.firstname }}</p>
-    <p class="ml-3"><strong>Nom : </strong>{{ currentUser.lastname }}</p>
-    <p class="ml-3"><strong>Pseudo : </strong>{{ currentUser.pseudo }}</p>
-    <p class="ml-3"><strong>Mail : </strong>{{ currentUser.mail }}</p>
-    <p class="ml-3"><strong>City : </strong>{{ currentUser.city }}</p>
-    <p class="ml-3"><strong>Genre : </strong>{{ currentUser.gender }}</p>
-    <p class="ml-3"><strong>Age : </strong>{{ currentUser.age }}</p>
+    <div class="row">
+      <div class="col-2">
+        <img class="avatarUser ml-3 mt-5" src="{{ currentUser.avatar }}" alt="avatar">
+      </div>
+      <div class="col-10">
+        <p class="mt-2 ml-3"><strong>Prénom : </strong>{{ currentUser.firstname }}</p>
+        <p class="ml-3"><strong>Nom : </strong>{{ currentUser.lastname }}</p>
+        <p class="ml-3"><strong>Pseudo : </strong>{{ currentUser.pseudo }}</p>
+        <p class="ml-3"><strong>Mail : </strong>{{ currentUser.mail }}</p>
+        <p class="ml-3"><strong>City : </strong>{{ currentUser.city }}</p>
+        <p class="ml-3"><strong>Genre : </strong>{{ currentUser.gender }}</p>
+        <p class="ml-3"><strong>Age : </strong>{{ currentUser.age }}</p>
+      </div>
+    </div>
     <button class="btn btn-success mt-3 mb-2 ml-3"><a class="linkButton"
         href="index/update/{{ currentUser._id }}">Modifier</a></button>
   </div>

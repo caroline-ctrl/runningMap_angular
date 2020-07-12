@@ -30,6 +30,7 @@ export class UserCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.formBuilder.group({
+      avatar: [''],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       pseudo: ['', Validators.required],
@@ -38,15 +39,17 @@ export class UserCreateComponent implements OnInit {
       gender: ['', Validators.required],
       age: [null, Validators.required],
       password: ['', Validators.required],
-      is_active: true,
       confirmPassword: ['', Validators.required]
     });
   }
 
 
   createUser() {
+    const avatarUser = "assets/images/avatar.png";
+
     const formValue = this.user.value;
     const data = new User (
+      avatarUser,
       formValue.firstname,
       formValue.lastname,
       formValue.pseudo,
@@ -55,7 +58,6 @@ export class UserCreateComponent implements OnInit {
       formValue.gender,
       formValue.age,
       formValue.password,
-      formValue.is_active
     );
 
     this.confirmMp = this.user.value.confirmPassword;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-update',
@@ -9,10 +9,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserUpdateComponent implements OnInit {
   currentUser = null;
+  imageSrc: string;
+  fileToUpload: File = null;
 
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -30,8 +33,13 @@ export class UserUpdateComponent implements OnInit {
     );
   }
 
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
+
   updateUser() {
     const data = {
+      avatar: this.fileToUpload.name,
       firstname: this.currentUser.firstname,
       lastname: this.currentUser.lastname,
       pseudo: this.currentUser.pseudo,
@@ -39,8 +47,6 @@ export class UserUpdateComponent implements OnInit {
       city: this.currentUser.city,
       gender: this.currentUser.gender,
       age: this.currentUser.age,
-      password: this.currentUser.password,
-      is_active: this.currentUser.is_active
     };
 
     const id = this.currentUser._id;
@@ -48,6 +54,7 @@ export class UserUpdateComponent implements OnInit {
     this.userService.updateUser(id, data).subscribe(
       (result) => {
         console.log('user modifié');
+        // this.router.navigate(["index/accueil"]);
       },
       (err) => {
         console.log(err);
@@ -59,5 +66,4 @@ export class UserUpdateComponent implements OnInit {
   age_user(n: number): any []{
     return Array(n);
   }
-
 }

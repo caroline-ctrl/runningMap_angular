@@ -39,9 +39,8 @@ export class UserConnexionComponent implements OnInit {
     this.userService.login(data).subscribe(
       (user) => {
         this.userConnected = user;
-        // récupère le pseudo et le is_active de l'objet user
+        // récupère le pseudo de l'objet user
         this.connectedPseudo = this.userConnected.pseudo;
-        this.connectedIsActive = this.userConnected.is_active;
 
         // cookie
         this.cookieService.set('pseudo', this.connectedPseudo, 7, 'http://localhost:3000', '', false, 'Lax');
@@ -55,8 +54,4 @@ export class UserConnexionComponent implements OnInit {
       }
     );
   }
-
-  // redirect(){
-  //   this.router.navigate(['index/accueil']);
-  // }
 }
