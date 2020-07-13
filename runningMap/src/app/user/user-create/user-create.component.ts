@@ -45,11 +45,11 @@ export class UserCreateComponent implements OnInit {
 
 
   createUser() {
-    const avatarUser = "assets/images/avatar.png";
+    const avatar = "assets/images/avatar.png";
     
     const formValue = this.user.value;
     const data = new User (
-      avatarUser,
+      avatar,
       formValue.firstname,
       formValue.lastname,
       formValue.pseudo,
@@ -66,31 +66,14 @@ export class UserCreateComponent implements OnInit {
     this.userService.createUser(data).subscribe(
       (result) => {
         console.log(result);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-
-
-    this.userService.login(data).subscribe(
-      (user) => {
-        this.userConnected = user;
-        // récupère le pseudo et le is_active de l'objet user
-        this.connectedPseudo = this.userConnected.pseudo;
-
-        // cookie
-        this.cookieService.set('pseudo', this.connectedPseudo, 1, 'http://localhost:3000', '', false, 'Lax');
-
+        this.cookieService.set('pseudo', data.pseudo, 1, 'http://localhost:3000', '', false, 'Lax');
         alert('Vous êtes inscrit');
-
         this.router.navigate(['index/accueil']);
       },
       (err) => {
         console.log(err);
       }
     );
-
   }
 
   age_user(n: number): any []{
