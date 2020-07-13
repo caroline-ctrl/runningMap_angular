@@ -24,6 +24,7 @@ import { AccueilComponent } from './user/accueil/accueil.component';
 import { UserConnexionComponent } from './user/user-connexion/user-connexion.component';
 import { UserMpForgetComponent } from './user/user-mp-forget/user-mp-forget.component';
 import { UserPasswordComponent } from './user/user-password/user-password.component';
+import { OrsComponent } from './ors/ors.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { UserPasswordComponent } from './user/user-password/user-password.compon
     UserConnexionComponent,
     UserMpForgetComponent,
     UserPasswordComponent,
+    OrsComponent,
     // FileSelectDirective,
   ],
   imports: [
