@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+// import { FileSelectDirective } from 'ng2-file-upload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +38,7 @@ import { UserPasswordComponent } from './user/user-password/user-password.compon
     UserConnexionComponent,
     UserMpForgetComponent,
     UserPasswordComponent,
+    // FileSelectDirective,
   ],
   imports: [
     BrowserModule,

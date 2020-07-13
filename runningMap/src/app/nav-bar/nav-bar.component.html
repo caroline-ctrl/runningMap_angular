@@ -12,12 +12,9 @@
 
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
       <img src="assets/images/logo.png" alt="logo" class="logo">
-      <span><a mat-list-item href="/index/accueil" class="linkAccueil">runningMap</a></span>
+      <span><a mat-list-item href="/index/accueil" class="linkAccueil">.runningMap. | .</a></span>
+      <span class="text-right"> Bonjour {{ contentCookie }}.</span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

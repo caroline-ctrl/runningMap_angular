@@ -1,7 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { UserService } from '../user.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ngfModule, ngf } from "angular-file"
 
 @Component({
   selector: 'app-user-update',
@@ -16,7 +15,6 @@ export class UserUpdateComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -70,7 +68,7 @@ export class UserUpdateComponent implements OnInit {
 
   updateAvatar(){
     const data = {
-      avatar: "assets/images/" + this.fileToUpload.name,
+      avatar: this.fileToUpload.name,
       firstname: this.currentUser.firstname,
       lastname: this.currentUser.lastname,
       pseudo: this.currentUser.pseudo,
@@ -91,7 +89,6 @@ export class UserUpdateComponent implements OnInit {
         console.log(err);
       }
     );
-
   }
 
   age_user(n: number): any []{
