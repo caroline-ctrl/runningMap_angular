@@ -4,19 +4,19 @@ import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UserCreateComponent } from './user/user-create/user-create.component';
 import { UserUpdateComponent } from './user/user-update/user-update.component';
-import { UserArchiveComponent } from './user/user-archive/user-archive.component';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AccueilComponent } from './user/accueil/accueil.component';
 import { UserConnexionComponent } from './user/user-connexion/user-connexion.component';
 import { UserMpForgetComponent } from './user/user-mp-forget/user-mp-forget.component';
 import { UserPasswordComponent } from './user/user-password/user-password.component';
+import { OrsComponent } from './ors/ors.component';
 
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'index/accueil'},
-  { path: 'user/:id', component: UserDetailComponent },
   { path: 'index', component: NavBarComponent, children: [
+    { path: 'testItineraire', component: OrsComponent },
     { path: 'update/:id', component: UserUpdateComponent },
     { path: 'accueil', component: AccueilComponent },
     { path: 'create', component: UserCreateComponent },

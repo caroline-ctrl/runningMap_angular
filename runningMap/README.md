@@ -31,3 +31,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ng generate running-map = allow generate a component
 ng generate service running-map/runningMap = generate a service
 npm install ngx-cookie-service = installation des dependances pour les cookies
+
+
+## OpenRouteService ORS
+npm install openrouteservice-js --save
