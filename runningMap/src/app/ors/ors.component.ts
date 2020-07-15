@@ -11,10 +11,12 @@ declare let L;
 })
 export class OrsComponent implements OnInit {
   itineraire: FormGroup;
-  points = null;
-  startingPoint = null;
-  endPoint = null;
+  points;
+  startingPoint;
+  endPoint;
   subscribe;
+  longitude;
+  latitude;
 
   constructor(
     private orsService: OrsService,
@@ -39,40 +41,43 @@ export class OrsComponent implements OnInit {
 
   postPoint() {
     const formValue = this.itineraire.value;
-    this.startingPoint = parseFloat(formValue.startingPoint);
-    this.endPoint = parseFloat(formValue.endPoint);
+    const data = formValue.startingPoint;
+    
 
-    this.addMap(this.startingPoint, this.endPoint);
 
-    // const data = {
-    //   startingPoint: formValue.startingPoint,
-    //   endPoint: formValue.endPoint
-    // };
 
-    // this.orsService.postPoint(data).subscribe(
-    //   (result) => {
-    //     this.points = result;
-    //     console.log(this.points);
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //   }
-    // );
+    this.orsService.postPoint(data).subscribe(
+      (result) => {
+        const coordinates = result["features"]["0"]['geometry']['coordinates'];
+        this.longitude = coordinates["0"];
+        this.latitude = coordinates["1"];
+        this.addMap(this.latitude, this.longitude);
+
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
+
+  // afficher le point sur la carte
   addMap(latitude, longitude) {
     const container = L.DomUtil.get('map'); // je recupère le contenu de map
 
-    if (container !== null || container !== undefined) { // si la carte est deja utilisé
+    if (container !== null || container !== undefined) {
+      // si la carte est deja utilisé
       container._leaflet_id = null; // supprime le contenu latitude et longitude
-      
-      let mymap = L.map('map').setView([ latitude, longitude ], 15);
+
+      let mymap = L.map('map').setView([ latitude, longitude ], 20);
 
       L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
         maxZoom: 18
       }).addTo(mymap);
+
+      L.marker([latitude, longitude]).addTo(mymap);
     }
   }
 }
