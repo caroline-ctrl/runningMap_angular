@@ -10,18 +10,18 @@ const iconDefault = L.icon({
   iconRetinaUrl,
   iconUrl,
   shadowUrl,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  tooltipAnchor: [16, -28],
-  shadowSize: [41, 41]
+  iconSize: [ 25, 41 ],
+  iconAnchor: [ 12, 41 ],
+  popupAnchor: [ 1, -34 ],
+  tooltipAnchor: [ 16, -28 ],
+  shadowSize: [ 41, 41 ]
 });
 L.Marker.prototype.options.icon = iconDefault;
 
 @Component({
   selector: 'app-ors',
   templateUrl: './ors.component.html',
-  styleUrls: ['./ors.component.css']
+  styleUrls: [ './ors.component.css' ]
 })
 export class OrsComponent implements OnInit {
   itineraire: FormGroup;
@@ -45,12 +45,14 @@ export class OrsComponent implements OnInit {
   // map
   mymap;
   mymapItineraire;
+  // tableau coordonnées
+  latlngs;
 
   constructor(
     private orsService: OrsService,
     private formBuilder: FormBuilder,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.itineraire = this.formBuilder.group({
@@ -66,7 +68,6 @@ export class OrsComponent implements OnInit {
       maxZoom: 18
     }).addTo(this.mymap);
   }
-
 
   getStartingPoint() {
     const formValue = this.itineraire.value;
@@ -112,13 +113,27 @@ export class OrsComponent implements OnInit {
     );
   }
 
+  pointsArray(items) {
+    let pointsArray = [];
+    items.forEach((item) => {
+      pointsArray.push(new L.LatLng(item[1], item[0]));
+    });
+    // for (let i = 0; i < items.length; i++){
+    //   let item = items[i];
+    //   pointsArray.push(new L.LatLng(item[0], item[1]));
+    // }
+    console.log(pointsArray);
+    return pointsArray;
+  }
+
   direction(locomotion, start, end) {
     this.orsService.direction(locomotion, start, end).subscribe(
       (result) => {
-        
         if (this.mymap) {
           // si la carte est deja utilisé
-          this.mymap.eachLayer(function(layer){layer.remove();});
+          this.mymap.eachLayer((layer) => {
+            layer.remove();
+          });
           this.mymap.remove();
           this.mymap = null;
           // si la carte est deja utilisé
@@ -135,15 +150,21 @@ export class OrsComponent implements OnInit {
           }).addTo(this.mymapItineraire);
         }
 
-        const tablePoints = result['features']['0']['geometry']['coordinates'];
-        for (let i = 0; i < tablePoints.length; i++) {
-          L.marker([ tablePoints[i]['1'], tablePoints[i]['0'] ]).addTo(this.mymapItineraire);
-        }
+        let tablePoints = [];
+        tablePoints = result['features']['0']['geometry']['coordinates'];
+
+        const polyline = L.polyline(this.pointsArray(tablePoints), {
+          color: 'red'
+        }).addTo(this.mymapItineraire);
+        this.mymapItineraire.fitBounds(polyline.getBounds());
+
+        L.marker([ this.latitudeStart, this.longitudeStart ]).addTo(this.mymapItineraire);
+        L.marker([ this.latitudeEnd, this.longitudeEnd ]).addTo(this.mymapItineraire);
+        
       },
       (err) => {
         console.log(err);
       }
     );
   }
-
 }
