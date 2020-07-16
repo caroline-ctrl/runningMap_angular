@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OrsService } from './ors.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { Ors } from './ors.model';
-declare let L;
+import * as Gp from 'geoportal-extensions-leaflet';
+const L = Gp.LExtended;
 @Component({
   selector: 'app-ors',
   templateUrl: './ors.component.html',
@@ -44,13 +43,14 @@ export class OrsComponent implements OnInit {
       endPoint: [ '', Validators.required ]
     });
 
-    this.mymap = L.map('map').setView([ 43.6112422, 3.8767337 ], 15);
+    // this.mymap = L.map('map').setView([ 43.6112422, 3.8767337 ], 15);
 
-    L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-      maxZoom: 18
-    }).addTo(this.mymap);
+    // L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+    //   attribution:
+    //     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+    //   maxZoom: 18
+    // }).addTo(this.mymap);
+    this.trace();
   }
 
   getStartingPoint() {
@@ -97,6 +97,63 @@ export class OrsComponent implements OnInit {
     );
   }
 
+  direction(locomotion, start, end) {
+    this.orsService.direction(locomotion, start, end).subscribe(
+      (result) => {
+        const container = L.DomUtil.get('map'); // je recupère le contenu de map
+
+        if (container !== null || container !== undefined) {
+          // si la carte est deja utilisé
+          container._leaflet_id = null; // supprime le contenu latitude et longitude
+
+          this.mymap = L.map('map').setView(
+            [ this.latitudeStart, this.longitudeStart ],
+            18
+          );
+
+          L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+            attribution:
+              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 18
+          }).addTo(this.mymap);
+        }
+
+        const tablePoints = result['features']['0']['geometry']['coordinates'];
+        for (let i = 0; i < tablePoints.length; i++) {
+          L.marker([ tablePoints[i]['1'], tablePoints[i]['0'] ]).addTo(
+            this.mymap
+          );
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  trace() {
+    let map = L.map('map');
+    L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+      maxZoom: 18
+    }).addTo(map);
+
+    // const container = L.DomUtil.get('map'); // je recupère le contenu de map
+    // if (container !== null || container !== undefined) {
+    //   // si la carte est deja utilisé
+    //   container._leaflet_id = null; // supprime le contenu latitude et longitude
+    Gp.Services
+      .route({
+        apiKey: '5b3ce3597851110001cf6248e4f4182f661b4d95829edd912435b2f4',
+        startPoint: [ 43.8986064, 4.7477259 ],
+        endPoint: [ 43.6112422, 3.8767337 ],
+        graph: 'Pieton'
+      })
+      .addTo(map);
+    // }
+  }
+
   // afficher le point sur la carte
   // addMapStarting(latitude, longitude) {
   //   const container = L.DomUtil.get('map'); // je recupère le contenu de map
@@ -116,37 +173,4 @@ export class OrsComponent implements OnInit {
   //     L.marker([ latitude, longitude ]).addTo(this.mymap);
   //   }
   // }
-
-  direction(locomotion, start, end) {
-    this.orsService.direction(locomotion, start, end).subscribe(
-      (result) => {
-
-        const container = L.DomUtil.get('map'); // je recupère le contenu de map
-
-        if (container !== null || container !== undefined) {
-          // si la carte est deja utilisé
-          container._leaflet_id = null; // supprime le contenu latitude et longitude
-    
-          this.mymap = L.map('map').setView([ this.latitudeStart, this.longitudeStart ], 18);
-    
-          L.tileLayer('//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-      maxZoom: 18
-    }).addTo(this.mymap);
-        }
-
-        const tablePoints = result['features']['0']['geometry']['coordinates'];
-        for (let i = 0; i < tablePoints.length; i++) {
-          
-          L.marker([ tablePoints[i]['1'], tablePoints[i]['0'] ]).addTo(
-            this.mymap
-          );
-        }
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
 }
