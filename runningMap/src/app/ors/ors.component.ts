@@ -105,7 +105,9 @@ export class OrsComponent implements OnInit {
           // si la carte est deja utilisé
           container._leaflet_id = null; // supprime le contenu latitude et longitude
 
-          this.mymap = L.map('map').setView(
+          this.mymap = L.map('map', {
+            dragging: true
+          }).setView(
             [ this.latitudeStart, this.longitudeStart ],
             18
           );
@@ -117,12 +119,12 @@ export class OrsComponent implements OnInit {
           }).addTo(this.mymap);
         }
 
-        const tablePoints = result['features']['0']['geometry']['coordinates'];
-        for (let i = 0; i < tablePoints.length; i++) {
-          L.marker([ tablePoints[i]['1'], tablePoints[i]['0'] ]).addTo(
-            this.mymap
-          );
-        }
+        // const tablePoints = result['features']['0']['geometry']['coordinates'];
+        // for (let i = 0; i < tablePoints.length; i++) {
+        //   L.marker([ tablePoints[i]['1'], tablePoints[i]['0'] ]).addTo(
+        //     this.mymap
+        //   );
+        // }
       },
       (err) => {
         console.log(err);
