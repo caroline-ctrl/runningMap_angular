@@ -12,13 +12,15 @@ import { UserConnexionComponent } from './user/user-connexion/user-connexion.com
 import { UserMpForgetComponent } from './user/user-mp-forget/user-mp-forget.component';
 import { UserPasswordComponent } from './user/user-password/user-password.component';
 import { OrsComponent } from './ors/ors.component';
+import { OrsLoopComponent } from './ors/ors-loop/ors-loop.component';
 
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'index/accueil'},
   { path: 'user/:id', component: UserDetailComponent },
   { path: 'index', component: NavBarComponent, children: [
-    { path: 'itineraire', component: OrsComponent },
+    { path: 'roundTrip', component: OrsComponent },
+    { path: 'loop', component: OrsLoopComponent },
     { path: 'update/:id', component: UserUpdateComponent },
     { path: 'accueil', component: AccueilComponent },
     { path: 'create', component: UserCreateComponent },

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrsService } from './ors.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 import * as L from 'leaflet';
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -47,6 +47,8 @@ export class OrsComponent implements OnInit {
   mymapItineraire;
   // tableau coordonnées
   latlngs;
+  // choix du sport
+  choice;
 
   constructor(
     private orsService: OrsService,
@@ -57,7 +59,8 @@ export class OrsComponent implements OnInit {
   ngOnInit(): void {
     this.itineraire = this.formBuilder.group({
       startingPoint: [ '', Validators.required ],
-      endPoint: [ '', Validators.required ]
+      endPoint: [ '', Validators.required ],
+      choiceValue: [ '', Validators.required ]
     });
 
     this.mymap = L.map('map').setView([ 43.6112422, 3.8767337 ], 15);
@@ -69,6 +72,9 @@ export class OrsComponent implements OnInit {
     }).addTo(this.mymap);
   }
 
+
+  // recupère les coordonnées GPS du point A
+  // return string
   getStartingPoint() {
     const formValue = this.itineraire.value;
     const data = formValue.startingPoint;
@@ -90,6 +96,15 @@ export class OrsComponent implements OnInit {
     );
   }
 
+
+  // choix du sport
+  getChoiceValue() {
+    const formValue = this.itineraire.value;
+    return this.choice = formValue.choiceValue;
+  }
+
+
+  // recupère les coordonnées GPS du point B
   getEndPoint() {
     const formValue = this.itineraire.value;
     const dataEnd = formValue.endPoint;
@@ -104,8 +119,7 @@ export class OrsComponent implements OnInit {
         this.pointsEndLat = this.latitudeEnd + '';
         this.end = this.pointsEndLong + ',' + this.pointsEndLat;
 
-        this.direction('foot-walking', this.start, this.end);
-        // this.addMapStarting(this.start, this.end);
+        this.direction(this.getChoiceValue(), this.start, this.end);
       },
       (err) => {
         console.log(err);
