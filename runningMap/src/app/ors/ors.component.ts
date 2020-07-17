@@ -180,4 +180,10 @@ export class OrsComponent implements OnInit {
       }
     );
   }
+
+
+  // temps et distance entre le point A et le point B
+  matrix(){
+    
+  }
 }

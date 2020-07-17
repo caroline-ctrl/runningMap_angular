@@ -21,4 +21,8 @@ export class OrsService {
   direction(locomotion, start, end) {
     return this.http.get(this.URL_API_ORS + '/v2/directions/' + locomotion + '?api_key=' + this.API_KEY + '&start=' + start + '&end=' + end);
   }
+  
+  matrix(locomotion, data) {
+    return this.http.post(this.URL_API_ORS + '/v2/matrix/' + locomotion, data);
+  }
 }
