@@ -25,7 +25,8 @@ import { UserConnexionComponent } from './user/user-connexion/user-connexion.com
 import { UserMpForgetComponent } from './user/user-mp-forget/user-mp-forget.component';
 import { UserPasswordComponent } from './user/user-password/user-password.component';
 import { OrsComponent } from './ors/ors.component';
-
+import { MatRadioModule } from '@angular/material/radio';
+import { OrsLoopComponent } from './ors/ors-loop/ors-loop.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { OrsComponent } from './ors/ors.component';
     UserMpForgetComponent,
     UserPasswordComponent,
     OrsComponent,
+    OrsLoopComponent,
     // FileSelectDirective,
   ],
   imports: [
@@ -54,7 +56,8 @@ import { OrsComponent } from './ors/ors.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatRadioModule
   ],
   providers: [
     CookieService

@@ -4,8 +4,10 @@
     *ngIf="contentCookie">
     <mat-toolbar><a mat-list-item href="/index/accueil"></a></mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="/index/itineraire">Générer un parcours</a>
-      <a mat-list-item href="/index/monCompte">Mon compte</a>
+      <p mat-list-item class="ml-3"><U>GENERER UN PARCOURS</U></p>
+      <a mat-list-item class="ml-3" href="/index/itineraire">Aller-retour</a>
+      <a mat-list-item class="ml-3" href="/index/itineraire">Boucle</a>
+      <a mat-list-item href="/index/monCompte"><U>MON COMPTE</U></a>
       <button mat-flat-button color="warn" (click)="logout()" class="ml-2 mt-5">Deconnexion</button>
     </mat-nav-list>
   </mat-sidenav>
