@@ -113,19 +113,18 @@ export class OrsComponent implements OnInit {
     );
   }
 
+
+  // récup les points du point A au point B
   pointsArray(items) {
     let pointsArray = [];
     items.forEach((item) => {
       pointsArray.push(new L.LatLng(item[1], item[0]));
     });
-    // for (let i = 0; i < items.length; i++){
-    //   let item = items[i];
-    //   pointsArray.push(new L.LatLng(item[0], item[1]));
-    // }
-    console.log(pointsArray);
     return pointsArray;
   }
 
+
+  // permet de réaliser le tracé de l'itineraire
   direction(locomotion, start, end) {
     this.orsService.direction(locomotion, start, end).subscribe(
       (result) => {
@@ -160,7 +159,7 @@ export class OrsComponent implements OnInit {
 
         L.marker([ this.latitudeStart, this.longitudeStart ]).addTo(this.mymapItineraire);
         L.marker([ this.latitudeEnd, this.longitudeEnd ]).addTo(this.mymapItineraire);
-        
+
       },
       (err) => {
         console.log(err);
