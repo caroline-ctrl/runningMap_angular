@@ -198,11 +198,12 @@ export class OrsComponent implements OnInit {
   // temps et distance entre le point A et le point B
   matrix(locomotion, points) {
     let locationData = {
-      locations: points
+      locations: points,
+      metrics: ['distance', 'duration']
     };
     this.orsService.matrix(locomotion, locationData).subscribe(
       (result) => {
-        console.log(result)
+        console.log(result);
         const totalDuration = result['durations']['0']
         const minute = (totalDuration[totalDuration.length-1])/60;
         this.duration = minute.toFixed(2);
