@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': '5b3ce3597851110001cf6248e4f4182f661b4d95829edd912435b2f4'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +28,8 @@ export class OrsService {
   direction(locomotion, start, end) {
     return this.http.get(this.URL_API_ORS + '/v2/directions/' + locomotion + '?api_key=' + this.API_KEY + '&start=' + start + '&end=' + end);
   }
-  
+
   matrix(locomotion, data) {
-    return this.http.post(this.URL_API_ORS + '/v2/matrix/' + locomotion, data);
+    return this.http.post(this.URL_API_ORS + '/v2/matrix/' + locomotion, data,  httpOptions);
   }
 }

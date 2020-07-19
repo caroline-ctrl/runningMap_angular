@@ -3,6 +3,7 @@ import { OrsService } from './ors.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as L from 'leaflet';
+
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
 const shadowUrl = 'assets/marker-shadow.png';
@@ -49,6 +50,9 @@ export class OrsComponent implements OnInit {
   latlngs;
   // choix du sport
   choice;
+  tablePoints;
+  // temps entre le point A et le point B
+  duration;
 
   constructor(
     private orsService: OrsService,
@@ -71,7 +75,6 @@ export class OrsComponent implements OnInit {
       maxZoom: 18
     }).addTo(this.mymap);
   }
-
 
   // recupère les coordonnées GPS du point A
   // return string
@@ -96,13 +99,11 @@ export class OrsComponent implements OnInit {
     );
   }
 
-
   // choix du sport
   getChoiceValue() {
     const formValue = this.itineraire.value;
-    return this.choice = formValue.choiceValue;
+    return (this.choice = formValue.choiceValue);
   }
-
 
   // recupère les coordonnées GPS du point B
   getEndPoint() {
@@ -127,7 +128,6 @@ export class OrsComponent implements OnInit {
     );
   }
 
-
   // récup les points du point A au point B
   pointsArray(items) {
     let pointsArray = [];
@@ -137,6 +137,15 @@ export class OrsComponent implements OnInit {
     return pointsArray;
   }
 
+
+  // modifie l'orde dans le tableau
+  pointsLatLong(items) {
+    let pointsArray = [];
+    items.forEach((item) => {
+      pointsArray.push(item[0], item[1]);
+    });
+    return pointsArray;
+  }
 
   // permet de réaliser le tracé de l'itineraire
   direction(locomotion, start, end) {
@@ -163,17 +172,22 @@ export class OrsComponent implements OnInit {
           }).addTo(this.mymapItineraire);
         }
 
-        let tablePoints = [];
-        tablePoints = result['features']['0']['geometry']['coordinates'];
+        this.tablePoints = [];
+        this.tablePoints = result['features']['0']['geometry']['coordinates'];
 
-        const polyline = L.polyline(this.pointsArray(tablePoints), {
+        const polyline = L.polyline(this.pointsArray(this.tablePoints), {
           color: 'red'
         }).addTo(this.mymapItineraire);
         this.mymapItineraire.fitBounds(polyline.getBounds());
 
-        L.marker([ this.latitudeStart, this.longitudeStart ]).addTo(this.mymapItineraire);
-        L.marker([ this.latitudeEnd, this.longitudeEnd ]).addTo(this.mymapItineraire);
+        L.marker([ this.latitudeStart, this.longitudeStart ]).addTo(
+          this.mymapItineraire
+        );
+        L.marker([ this.latitudeEnd, this.longitudeEnd ]).addTo(
+          this.mymapItineraire
+        );
 
+        this.matrix(this.getChoiceValue(), this.tablePoints);
       },
       (err) => {
         console.log(err);
@@ -181,9 +195,21 @@ export class OrsComponent implements OnInit {
     );
   }
 
-
   // temps et distance entre le point A et le point B
-  matrix(){
-    
+  matrix(locomotion, points) {
+    let locationData = {
+      locations: points
+    };
+    this.orsService.matrix(locomotion, locationData).subscribe(
+      (result) => {
+        console.log(result)
+        const totalDuration = result['durations']['0']
+        const minute = (totalDuration[totalDuration.length-1])/60;
+        this.duration = minute.toFixed(2);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }
