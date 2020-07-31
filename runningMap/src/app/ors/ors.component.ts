@@ -92,6 +92,8 @@ export class OrsComponent implements OnInit {
         this.pointsstartLat = this.latitudeStart + '';
 
         this.start = this.pointsstartLon + ',' + this.pointsstartLat;
+
+        this.getEndPoint();
       },
       (err) => {
         console.log(err);

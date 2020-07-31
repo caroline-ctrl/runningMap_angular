@@ -1,7 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false"
-    *ngIf="contentCookie">
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(editMenu$ | async)">
     <mat-toolbar><a mat-list-item href="/index/accueil"></a></mat-toolbar>
     <mat-nav-list>
       <p mat-list-item class="ml-3"><U>GENERER UN PARCOURS</U></p>

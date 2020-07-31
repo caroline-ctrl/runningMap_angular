@@ -16,6 +16,9 @@ export class NavBarComponent implements OnInit {
   contentCookie;
   subscribe;
 
+  // breakpointObserver evalue les requetes media et reagit  en fonction de l'évolution
+  // .observe() utilisée pour obtenir le flux observable qui emettra chaque fois qu'une requete media aura un resultat different
+  // Breakpoints point d'arret pour different type de periphérique
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -23,10 +26,20 @@ export class NavBarComponent implements OnInit {
     );
 
 
+    editMenu$ = new Observable<boolean>(observer => {
+      this.contentCookie = this.cookieService.get('pseudo');
+      if (this.contentCookie) {
+        observer.next(true);
+      } else {
+        observer.next(false);
+      }
+    });
+
+
   constructor(private breakpointObserver: BreakpointObserver, private cookieService: CookieService, private router: Router) {}
 
   ngOnInit(): void {
-    this.modifNav();
+    // this.modifNav();
 
     // actualise la navbar
     this.router.routeReuseStrategy.shouldReuseRoute = (() => {
@@ -41,9 +54,9 @@ export class NavBarComponent implements OnInit {
 
 
   // affiche ou cache le menu si le user est connecté ou non.
-  modifNav(){
-    this.contentCookie = this.cookieService.get('pseudo');
-  }
+  // modifNav(){
+  //   this.contentCookie = this.cookieService.get('pseudo');
+  // }
 
 
   // deconnexion

@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class UserService {
 
-  private URL_API = 'http://localhost:3000';
+  private URL_API = 'https://apirunningmap.herokuapp.com';
 
   constructor(private http: HttpClient) { }
 
