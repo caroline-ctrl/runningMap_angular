@@ -37,6 +37,7 @@ export class UserPasswordComponent implements OnInit {
     };
 
     this.userService.changePassword(data).subscribe(user => {
+      console.log(user)
       this.cookieService.set('pseudo', user.pseudo, 7, 'http://localhost:3000', '', false, 'Lax');
       this.cookieService.delete('token');
       this.router.navigate(['index/accueil']);

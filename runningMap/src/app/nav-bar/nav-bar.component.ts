@@ -28,6 +28,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     this.modifNav();
 
+    // actualise la navbar
     this.router.routeReuseStrategy.shouldReuseRoute = (() => {
       return false;
     })

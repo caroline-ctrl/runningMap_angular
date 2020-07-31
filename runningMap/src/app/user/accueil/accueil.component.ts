@@ -13,11 +13,8 @@ export class AccueilComponent implements OnInit {
   constructor(private cookieService: CookieService) {}
 
   ngOnInit(): void {
-    this.emptyCookie();
+      this.contentCookie = this.cookieService.get('pseudo');
    }
 
 
-  emptyCookie(){
-    this.contentCookie = this.cookieService.get('pseudo');
-  }
 }

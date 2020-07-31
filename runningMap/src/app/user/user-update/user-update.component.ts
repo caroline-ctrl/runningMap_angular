@@ -1,6 +1,6 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-update',
@@ -21,6 +21,7 @@ export class UserUpdateComponent implements OnInit {
     this.getUserById(this.route.snapshot.paramMap.get('id'));
   }
 
+  // recupère l'objet user a partir de l'id
   getUserById(id: string) {
     this.userService.getUserById(id).subscribe(
       (user) => {
@@ -32,7 +33,7 @@ export class UserUpdateComponent implements OnInit {
     );
   }
 
-
+  // modifie le user et renvoie un message
   updateUser() {
     const data = {
       avatar: this.currentUser.avatar,
