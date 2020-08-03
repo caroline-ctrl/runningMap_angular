@@ -3,7 +3,6 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
-import { interval } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
