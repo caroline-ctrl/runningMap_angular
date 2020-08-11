@@ -31,11 +31,16 @@ export class UserMpForgetComponent implements OnInit {
   sendMail() {
     this.mail = this.user.value.mail;
 
-    this.userService.mail(this.mail).subscribe(() => {
-      alert('Un mail vient de vous être envoyé');
-      this.messageCode = prompt('Renseigner votre code envoyé par mail'); // messageCode contient le code envoyé par le user
-      this.verifyCode(this.messageCode);
-      // this.router.navigate(['index/accueil']);
+    this.userService.mail(this.mail).subscribe((user) => {
+      if(Object.keys(user).length > 0) {
+        alert('Un mail vient de vous être envoyé');
+        this.messageCode = prompt('Renseigner votre code envoyé par mail'); // messageCode contient le code envoyé par le user
+        this.verifyCode(this.messageCode);
+      } else if (Object.keys(user).length === 0){
+        alert('L\'adresse mail n\'existe pas');
+      }
+    }, err => {
+      alert(err);
     });
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-update',
@@ -15,6 +15,7 @@ export class UserUpdateComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -53,7 +54,8 @@ export class UserUpdateComponent implements OnInit {
     this.userService.updateUser(id, data).subscribe(
       (result) => {
         console.log('user modifié');
-        // this.router.navigate(["index/accueil"]);
+        alert('Votre compte a été modifié avec succés !')
+        this.router.navigate(["index/monCompte"]);
       },
       (err) => {
         console.log(err);

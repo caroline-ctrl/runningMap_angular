@@ -1,7 +1,7 @@
 <div class="container">
-  <h1 class="mt-5 text-center">Running Map</h1>
+  <h1 class="mt-5 text-center font-weight-bold text-uppercase">Running Map</h1>
 
-  <p class="text-justify my-5">Bienvenue sur l'application Running Map !</p>
+  <h2 class="text-justify my-5">Bienvenue sur l'application Running Map !</h2>
   <p class="text-justify">Vous êtes sportif débutant ou avéré et vous ne connaissez pas ou peu de parcours autour de
     chez ? Vous partez en vacances et vous souhaitez continuer a faire du sport mais vous ne connaissez pas de parcours
     ? Cette application est faite pour pour vous !</p>
@@ -16,8 +16,8 @@
     <h1>Bon sport !</h1>
   </div>
   <div class="example-button-row text-center my-5" *ngIf="!contentCookie">
-    <button mat-flat-button color="accent" class="mx-3"><a href="index/create" class="nav-link linkButton">Inscription</a></button>
-    <button mat-flat-button color="warn"><a href="index/login" class="nav-link linkButton">Connexion</a></button>
+    <button mat-flat-button color="accent" class="mx-3" [routerLink]="['/index/create']">Inscription</button>
+    <button mat-flat-button color="primary" [routerLink]="['/index/login']">Connexion</button>
   </div>
 
 </div>
