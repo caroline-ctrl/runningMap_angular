@@ -151,7 +151,7 @@ export class OrsComponent implements OnInit {
   }
 
   // permet de réaliser le tracé de l'itineraire
-  direction(locomotion, start, end) {
+  direction(locomotion, start, end): void {
     this.orsService.direction(locomotion, start, end).subscribe(
       (result) => {
         if (this.mymap) {
