@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+// header pour les methodes POST
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -17,19 +18,20 @@ export class OrsService {
 
   constructor(private http: HttpClient) {}
 
-  getStartingPoint(data) {
+  getStartingPoint(data): object {
     return this.http.get(this.URL_API_ORS + '/geocode/search?api_key=' + this.API_KEY + '&text=' + data);
   }
 
-  getEndPoint(data) {
+  getEndPoint(data): object {
     return this.http.get(this.URL_API_ORS + '/geocode/search?api_key=' + this.API_KEY + '&text=' + data);
   }
 
-  direction(locomotion, start, end) {
+  direction(locomotion, start, end): object {
+    // tslint:disable-next-line:max-line-length
     return this.http.get(this.URL_API_ORS + '/v2/directions/' + locomotion + '?api_key=' + this.API_KEY + '&start=' + start + '&end=' + end);
   }
 
-  matrix(locomotion, data) {
+  matrix(locomotion, data): object {
     return this.http.post(this.URL_API_ORS + '/v2/matrix/' + locomotion, data,  httpOptions);
   }
 }
