@@ -29,8 +29,12 @@ export class UserConnexionComponent implements OnInit {
     });
   }
 
-  loginUser() {
+
+  // vérification des identifant
+  // stockage en cookie du psuedo
+  loginUser(): void {
     const formValue = this.user.value;
+    // valeurs récupérées du formualaire
     const data = {
       mail: formValue.mail,
       password: formValue.password
@@ -42,11 +46,12 @@ export class UserConnexionComponent implements OnInit {
         // récupère le pseudo de l'objet user
         this.connectedPseudo = this.userConnected.pseudo;
 
-        // cookie
+        // met le pseudo en cookie
         this.cookieService.set('pseudo', this.connectedPseudo, 7, 'http://localhost:3000', '', false, 'Lax');
 
         alert('Vous êtes connecté');
 
+        // redirection vers la page d'accueil
         this.router.navigate(['index/accueil']);
       },
       (err) => {
