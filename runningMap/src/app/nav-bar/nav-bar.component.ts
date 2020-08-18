@@ -24,8 +24,9 @@ export class NavBarComponent implements OnInit {
       shareReplay()
     );
 
-
+    // observable navbar
     editMenu$ = new Observable<boolean>(observer => {
+      // recupère le cookie
       this.contentCookie = this.cookieService.get('pseudo');
       if (this.contentCookie) {
         observer.next(true);
