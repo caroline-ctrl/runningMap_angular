@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as L from 'leaflet';
 
+// positionnement des marker et affichage de l'image
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
 const shadowUrl = 'assets/marker-shadow.png';
@@ -155,13 +156,14 @@ export class OrsComponent implements OnInit {
       (result) => {
         if (this.mymap) {
           // si la carte est deja utilisé
+          // supprime la carte présente
           this.mymap.eachLayer((layer) => {
             layer.remove();
           });
           this.mymap.remove();
           this.mymap = null;
-          // si la carte est deja utilisé
 
+          // réinitialise la nouvelle carte avec les nouveaux points
           this.mymapItineraire = L.map('map').setView(
             [ this.latitudeStart, this.longitudeStart ],
             18
@@ -174,21 +176,26 @@ export class OrsComponent implements OnInit {
           }).addTo(this.mymapItineraire);
         }
 
+        // tableau contenant les point GPS du tracé
         this.tablePoints = [];
         this.tablePoints = result['features']['0']['geometry']['coordinates'];
 
+        // tracé GPS 
         const polyline = L.polyline(this.pointsArray(this.tablePoints), {
           color: 'red'
         }).addTo(this.mymapItineraire);
         this.mymapItineraire.fitBounds(polyline.getBounds());
 
+        // marker de départ
         L.marker([ this.latitudeStart, this.longitudeStart ]).addTo(
           this.mymapItineraire
         );
+        // marker d'arrivé
         L.marker([ this.latitudeEnd, this.longitudeEnd ]).addTo(
           this.mymapItineraire
         );
 
+        // methode matrix pour avoir le temps et la distance entre le point A et B
         this.matrix(this.getChoiceValue(), this.tablePoints);
       },
       (err) => {

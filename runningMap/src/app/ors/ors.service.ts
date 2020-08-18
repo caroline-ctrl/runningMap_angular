@@ -18,20 +18,20 @@ export class OrsService {
 
   constructor(private http: HttpClient) {}
 
-  getStartingPoint(data): object {
+  getStartingPoint(data) {
     return this.http.get(this.URL_API_ORS + '/geocode/search?api_key=' + this.API_KEY + '&text=' + data);
   }
 
-  getEndPoint(data): object {
+  getEndPoint(data) {
     return this.http.get(this.URL_API_ORS + '/geocode/search?api_key=' + this.API_KEY + '&text=' + data);
   }
 
-  direction(locomotion, start, end): object {
+  direction(locomotion, start, end) {
     // tslint:disable-next-line:max-line-length
     return this.http.get(this.URL_API_ORS + '/v2/directions/' + locomotion + '?api_key=' + this.API_KEY + '&start=' + start + '&end=' + end);
   }
 
-  matrix(locomotion, data): object {
+  matrix(locomotion, data) {
     return this.http.post(this.URL_API_ORS + '/v2/matrix/' + locomotion, data,  httpOptions);
   }
 }
