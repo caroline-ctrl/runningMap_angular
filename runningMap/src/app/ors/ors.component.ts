@@ -205,16 +205,20 @@ export class OrsComponent implements OnInit {
   }
 
   // temps et distance entre le point A et le point B
-  matrix(locomotion, points) {
-    let locationData = {
+  matrix(locomotion, points): void {
+    // données a envoyer à l'api
+    const locationData = {
       locations: points,
       metrics: ['distance', 'duration']
     };
+
     this.orsService.matrix(locomotion, locationData).subscribe(
       (result) => {
-        console.log(result);
-        const totalDuration = result['durations']['0']
-        const minute = (totalDuration[totalDuration.length-1])/60;
+        // tableau contenant le temps entre chaque point gps
+        const totalDuration = result[' durations ']['0'];
+        // conversion des secondes en minutes
+        const minute = (totalDuration[totalDuration.length - 1]) / 60;
+        // deux chiffres après la virgule
         this.duration = minute.toFixed(2);
       },
       (err) => {
