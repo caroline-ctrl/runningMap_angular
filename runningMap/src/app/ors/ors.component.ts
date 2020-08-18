@@ -54,6 +54,7 @@ export class OrsComponent implements OnInit {
   tablePoints;
   // temps entre le point A et le point B
   duration;
+  metric;
 
   constructor(
     private orsService: OrsService,
@@ -218,6 +219,8 @@ export class OrsComponent implements OnInit {
         const totalDuration = result[' durations ']['0'];
         // conversion des secondes en minutes
         const minute = (totalDuration[totalDuration.length - 1]) / 60;
+        // tableau contenant la distance entre chaque point gps
+        this.metric = result[' distances']['0'];
         // deux chiffres après la virgule
         this.duration = minute.toFixed(2);
       },
