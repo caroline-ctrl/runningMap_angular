@@ -59,8 +59,8 @@ export class UserCreateComponent implements OnInit {
       formValue.password,
     );
 
-    this.confirmMp = this.user.value.confirmPassword;
-    this.mp = this.user.value.password;
+    this.confirmMp = formValue.confirmPassword;
+    this.mp = formValue.password;
 
     this.userService.createUser(data).subscribe(
       (result) => {
