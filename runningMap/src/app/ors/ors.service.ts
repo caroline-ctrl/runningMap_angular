@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 // header pour les methodes POST
 const httpOptions = {
@@ -13,8 +14,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class OrsService {
-  private URL_API_ORS = 'https://api.openrouteservice.org';
-  private API_KEY = '5b3ce3597851110001cf6248e4f4182f661b4d95829edd912435b2f4';
+  private URL_API_ORS = environment.API_ORS;
+  private API_KEY = environment.KEY_API_ORS;
 
   constructor(private http: HttpClient) {}
 

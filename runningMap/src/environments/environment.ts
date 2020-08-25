@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API_USER: 'https://apirunningmap.herokuapp.com',
+  API_ORS: 'https://api.openrouteservice.org',
+  KEY_API_ORS: '5b3ce3597851110001cf6248e4f4182f661b4d95829edd912435b2f4'
 };
 
 /*

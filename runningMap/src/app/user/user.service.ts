@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './user.model';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private URL_API = 'https://apirunningmap.herokuapp.com';
+  private URL_API = environment.API_USER;
 
   constructor(private http: HttpClient) { }
 
