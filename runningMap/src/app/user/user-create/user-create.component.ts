@@ -45,8 +45,7 @@ export class UserCreateComponent implements OnInit {
 
 
   createUser() {
-    const avatar = "avatar.png";
-    
+    const avatar = 'avatar.png';
     const formValue = this.user.value;
     const data = new User (
       avatar,

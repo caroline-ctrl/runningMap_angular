@@ -10,4 +10,4 @@ export class User {
         public age: number,
         public password: string,
     ){}
-}; 
+}
